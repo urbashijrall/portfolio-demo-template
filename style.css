@@ -1,0 +1,433 @@
+/* Defining CSS Variables */
+:root {
+  /* Colors */
+  --primary-color: #2e3b4e; /* Dark Blue */
+  --accent-color: #4caf50; /* Green */
+  --background-color: #f4f4f4; /* Light Background */
+  --light-bg-color: #f9f9f9; /* Light Gray for sections */
+  --white-color: #ffffff; /* White */
+  --text-color: #333333; /* Dark Text */
+  --muted-text-color: #555555; /* Muted text */
+
+  /* Fonts */
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
+
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 20px;
+  --space-md-25: 25px;
+  --space-md-30: 30px;
+  --space-lg: 40px;
+  --space-xl: 60px;
+  --space-xxl: 80px;
+  --space-xxxl: 120px;
+
+  /* Border Radius */
+  --border-radius: 8px;
+
+  /* Shadows */
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: var(--space-md);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 var(--space-md-25);
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.navbar-list {
+  list-style-type: none;
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.navbar-list--item {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.navbar-list--item a {
+  text-decoration: none;
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.navbar-list--item a:hover {
+  color: var(--accent-color);
+}
+
+/* Navbar Toggle (Mobile) */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: var(--primary-color);
+    width: 100%;
+    padding: var(--space-sm) 0;
+  }
+
+  .navbar-list--item {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: var(--space-sm);
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-list.active {
+    display: flex;
+  }
+}
+
+.navbar-list {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Main */
+main {
+  flex: 1;
+  padding-top: 100px;
+  padding: var(--space-xxxl) var(--space-lg) var(--space-md);
+  background-color: var(--white-color);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin: 0 auto;
+}
+
+/* Section Styles */
+section {
+  display: block; /* Ensure all sections are visible */
+  transition: all 0.3s ease; /* Smooth transition for visibility and size */
+  width: 100%; /* Full width by default */
+  visibility: visible;
+  background-color: var(--light-bg-color);
+  padding: var(--space-md-30);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: var(--space-lg);
+  flex: 1;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
+
+  position: relative;
+  /* border-radius: 10px; */
+  /* background-color: #f4f4f4; */
+  /* padding: 20px; */
+  margin: 10px 0;
+  /* transition: all 0.3s ease; */
+}
+
+section.collapsed {
+  opacity: 0; /* Make the hidden sections fade out */
+  pointer-events: none; /* Disable interaction */
+  position: absolute; /* Position hidden sections out of the flow */
+  visibility: hidden; /* Hide visually */
+  width: 0; /* Reduce size */
+}
+section.expanded {
+  opacity: 1; /* Make it fully visible */
+  pointer-events: auto; /* Enable interaction */
+  visibility: visible; /* Ensure it is shown */
+  width: 100%; /* Full width for expanded section */
+}
+section:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+section p {
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+section a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+section a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1rem;
+  margin-bottom: var(--space-sm);
+}
+
+/* Skill Set */
+.skills-set {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-sm);
+}
+
+.skill-set-item {
+  font-size: 1.1rem;
+  color: var(--muted-text-color);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Projects */
+.projects {
+  background-color: var(--light-bg-color);
+  padding: var(--space-md-30);
+  border-radius: var(--border-radius);
+}
+
+.project {
+  background-color: var(--white-color);
+  padding: var(--space-md);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: var(--space-md);
+}
+
+/* Contact */
+.contact {
+  background-color: var(--light-bg-color);
+  padding: var(--space-md-30);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  /* margin-bottom: var(--space-lg); */
+}
+
+.contact h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: var(--space-md);
+  text-align: left;
+  letter-spacing: 1px;
+}
+
+/* Contact Card */
+.contact-card {
+  background: linear-gradient(135deg, #ffffff, #f0f4f8);
+  padding: var(--space-md);
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  line-height: 1.8;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-card p {
+  margin-bottom: var(--space-sm);
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.contact-card p strong {
+  color: var(--primary-color);
+}
+
+.contact-card a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 100;
+  transition: color 0.3s ease;
+  overflow-wrap: break-word;
+}
+
+.contact-card a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+/* Footer */
+footer {
+  padding: var(--space-sm) 0;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  text-align: center;
+}
+
+footer p {
+  font-size: 1rem;
+}
+
+footer a {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--accent-color);
+}
+
+/* Accordion Styles */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.accordion-item {
+  border: 1px solid var(--muted-text-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.accordion-header {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: var(--space-md);
+  font-size: 1.2rem;
+  text-align: left;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background-color: #3f4f65;
+}
+
+.accordion-header:focus {
+  outline: 2px solid var(--accent-color);
+}
+
+.accordion-header i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  background-color: var(--light-bg-color);
+  padding: var(--space-md);
+  font-size: 1rem;
+  color: var(--text-color);
+  display: none;
+  line-height: 1.5;
+}
+
+.accordion-content p {
+  margin-bottom: var(--space-sm);
+}
+
+.accordion-item.active .accordion-content {
+  display: block;
+}
+
+.accordion-item.active .accordion-header i {
+  transform: rotate(90deg);
+}
+
+
+
+@media (min-width: 768px) {
+  section.expanded {
+    width: 100%; /* Take full width of the main container */
+    margin: 0; /* Remove margins */
+    border-radius: 0; /* Remove border radius */
+  }
+
+  section{
+    display: block;
+  }
+}
+
+/* Reset display for smaller screens */
+@media (max-width: 767px) {
+  section {
+    display: block; /* Ensure sections are always visible on smaller screens */
+  }
+}
